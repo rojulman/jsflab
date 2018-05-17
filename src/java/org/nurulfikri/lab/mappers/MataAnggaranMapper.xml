@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="MataAnggaranMapper">
+  
+    <resultMap id="result" type="MataAnggaran">
+        <id property="id" column="id"/>
+        <result property="nama" column="nama"/>
+        <result property="maksimal" column="maksimal"/>
+        <result property="kategoriId" 
+               column="kategori_belanja_id"/>
+        <association property="kategoriBelanja"
+                     column="kategori_belanja_id"
+                     javaType="KategoriBarang"
+                     select="selectKategori"/>
+    </resultMap>    
+  <select id="selectAll" resultMap="result">
+    select * from mata_anggaran;
+  </select>
+  <select id="selectKategori"
+          parameterType="int"
+          resultSetType="KategoriBelanja">
+         SELECT * FROM kategori_belanja 
+          WHERE id=#{id}
+  </select>
+  
+  
+  <!--
+  <insert id="insertPropinsi" useGeneratedKeys="true"
+    keyProperty="id">
+       insert into propinsi (kode,nama)
+       values (#{kode},#{nama})
+  </insert>
+  <update id="updatePropinsi">
+      update propinsi SET
+        kode=#{kode},
+        nama=#{nama}
+        WHERE id=#{id}
+  </update>
+  <delete id="deletePropinsi">
+      delete from propinsi where id=#{id}
+  </delete>
+  
+  -->
+  
+  
+  
+</mapper>

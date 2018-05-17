@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <ui:composition 
+            template="../layout/template2.xhtml">
+
+            <ui:define name="isi">
+                <h2>Form Referensi Mata Anggaran</h2>
+                <h:form>
+                    Nama Anggaran :
+                    <h:inputText 
+                        value="#{anggaranController.mataAnggaran.nama}"/>
+                    <br/>
+                    Pagu Maksimal
+                    <h:inputText 
+                        value="#{anggaranController.mataAnggaran.maksimal}"/>
+                    <br/>
+                    Kategori :
+                    <h:selectOneMenu
+                        value="#{anggaranController.mataAnggaran.kategoriId}">
+                        <f:selectItems 
+                            value="#{anggaranController.listKategori}"
+                            var="item"
+                            itemValue="#{item.id}"/>
+                    </h:selectOneMenu>
+
+
+                    <br/>
+                    <h:commandButton
+                        value="Simpan"
+                        action="#{anggaranController.saveAnggaran()}"/>
+
+
+                </h:form>
+                <hr/>
+                <h:form>
+                    <b:dataTable value="#{anggaranController.listKategori}"
+                                 var="car"
+                                 excel="true"
+               csv="true"
+               pdf="true"
+               columnVisibility="true"
+               copy="true"
+               print="true"
+               row-style-class="#{car.id>2?'light-power':'light'}, #{car.id>2?'dark-power':'dark'} ">>
+                        <b:dataTableColumn value="#{car.id}" />
+                        <b:dataTableColumn value="#{car.nama}" />
+                    </b:dataTable>
+                </h:form>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        
+        <ui:composition 
+            template="layout/template2.xhtml">
+            
+            <ui:define name="isi">
+                <h2>ISI WEB </h2>
+            </ui:define>
+            
+        </ui:composition>   
+        
+        
+        
+        
+        
+        <div>Welcome To JSF</div>
+        
+        <h:form>
+            Masukan Nama :
+            <h:inputText id="name"
+                         value="#{hello.name}">
+            </h:inputText>
+            <h:commandButton value="Welcome"
+                             action="welcome?faces-redirect=true">                                 
+            </h:commandButton>
+            
+            <hr/>
+            <h:commandButton value="Welcome Ajax">
+                <f:ajax execute="name" render="output"/>
+            </h:commandButton>
+            
+            <br/>
+            Say Hello To :
+            <h:outputText
+                id="output"
+                value="#{hello.sayWelcome}"/>
+                             
+            
+            <hr/>
+            <h:commandButton 
+                action="#{homeController.welcomePage()}"
+                value="Move To welcome.xhtml"/>
+        </h:form>      
+        
+    </h:body>
+</html>
