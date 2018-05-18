@@ -9,7 +9,8 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core" 
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:hf="http://highfaces.org" >
     <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" 
@@ -17,18 +18,30 @@ and open the template in the editor.
               initial-scale=1.0"/>
     </h:head>
     <h:body>
-       
+
         <ui:composition 
             template="layout/template2.xhtml">
-            
+
             <ui:define name="isi">
-                 REQUEST URL : 
-                 #{request.requestURL.substring(0, request.requestURL.length() - request.requestURI.length())}
-                 <br/>
-                 PATH APP : #{request.contextPath}
+                REQUEST URL : 
+                #{request.requestURL.substring(0, request.requestURL.length() - request.requestURI.length())}
+                <br/>
+                PATH APP : #{request.contextPath}
+
+                <hr/>
+
+                <hf:chart type="pie" title="Series with individual lists">
+                    <hf:chartSerie 
+                        name="Boys" 
+                        value="#{lineChartBean.boys}" 
+                        var="point" 
+                        point="#{point.amount}"  
+                        tickLabel="#{point.year}"/>
+
+                </hf:chart>
             </ui:define>
-            
-            
+
+
         </ui:composition>
     </h:body>
 </html>
