@@ -13,38 +13,49 @@
                column="kategori_belanja_id"/>
         <association property="kategoriBelanja"
                      column="kategori_belanja_id"
-                     javaType="KategoriBarang"
+                     javaType="KategoriBelanja"
                      select="selectKategori"/>
-    </resultMap>    
+    </resultMap>
+    
+     <resultMap id="resultKategori" type="KategoriBelanja">
+        <id property="id" column="id"/>
+        <result property="nama" column="nama"/>
+    </resultMap>
+                 
   <select id="selectAll" resultMap="result">
-    select * from mata_anggaran;
+    SELECT * FROM mata_anggaran;
   </select>
+  
+  <select id="selectAllKategori" resultMap="resultKategori">
+    SELECT * FROM kategori_belanja;
+  </select>
+  
+  
+  <select id="selectMataAnggaran"
+          parameterType="int"
+          resultType="MataAnggaran">
+         SELECT * FROM mata_anggaran WHERE id=#{id}
+  </select>
+  
   <select id="selectKategori"
           parameterType="int"
-          resultSetType="KategoriBelanja">
-         SELECT * FROM kategori_belanja 
-          WHERE id=#{id}
+          resultType="KategoriBelanja">
+         SELECT * FROM kategori_belanja WHERE id=#{id}
   </select>
   
-  
-  <!--
-  <insert id="insertPropinsi" useGeneratedKeys="true"
+  <insert id="insertMataAnggaran" useGeneratedKeys="true"
     keyProperty="id">
-       insert into propinsi (kode,nama)
-       values (#{kode},#{nama})
+       insert into mata_anggaran (nama,maksimal,kategori_belanja_id)
+       values (#{nama},#{maksimal},#{kategoriId})
   </insert>
-  <update id="updatePropinsi">
-      update propinsi SET
-        kode=#{kode},
-        nama=#{nama}
+  <update id="updateMataAnggaran">
+      UPDATE mata_anggaran SET
+        nama=#{kode},
+        maksimal=#{nama},
+        kategori_belanja_id=#{kategoriId}
         WHERE id=#{id}
   </update>
-  <delete id="deletePropinsi">
-      delete from propinsi where id=#{id}
+  <delete id="deleteMataAnggaran">
+      DELETE FROM mata_anggaran WHERE id=#{id}
   </delete>
-  
-  -->
-  
-  
-  
 </mapper>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <ui:composition 
+            template="../layout/template2.xhtml">
+
+            <ui:define name="isi">
+Daftar Mata Anggaran
+                <h:form>
+                    <b:dataTable 
+                        value="#{mataAnggarController.allMataAnggaran}"
+                        var="obj"
+                        excel="true"
+                        csv="true"
+                        pdf="true"
+                        columnVisibility="true"
+                        copy="true"
+                        print="true"
+
+
+                        >
+                        <b:dataTableColumn 
+                            value="#{obj.id}"/>
+                        <b:dataTableColumn 
+                            value="#{obj.nama}"/>
+                        <b:dataTableColumn 
+                            label="Kategori"
+                            value="#{obj.kategoriBelanja.nama}"/>
+                        
+                        <b:dataTableColumn>
+                           <h:commandLink
+                            value="Edit"/> 
+                       |
+                         <b:commandLink
+                            value="Delete"/> 
+                      
+                        </b:dataTableColumn>
+                        
+                    </b:dataTable>
+                </h:form>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
