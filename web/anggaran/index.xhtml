@@ -21,6 +21,9 @@ and open the template in the editor.
             <ui:define name="isi">
 Daftar Mata Anggaran
                 <h:form>
+                    <b:commandButton value="Create Mata Anggaran" 
+                                     look="warning"
+                    action="#{mataAnggarController.addMataAnggaran()}" />
                     <b:dataTable 
                         value="#{mataAnggarController.allMataAnggaran}"
                         var="obj"
@@ -37,20 +40,30 @@ Daftar Mata Anggaran
                             value="#{obj.id}"/>
                         <b:dataTableColumn 
                             value="#{obj.nama}"/>
+                        
+                        <b:dataTableColumn 
+                            label="Pagu Maksimal"
+                            value="#{obj.maksimal}"/>
+                        
                         <b:dataTableColumn 
                             label="Kategori"
                             value="#{obj.kategoriBelanja.nama}"/>
                         
                         <b:dataTableColumn>
                            <h:commandLink
-                            value="Edit"/> 
+                            value="Edit"
+                            action="#{mataAnggarController.editMataAnggaran(obj)}"
+                            /> 
                        |
-                         <b:commandLink
-                            value="Delete"/> 
+                         <h:commandLink
+                            value="Hapus"
+                            action="#{mataAnggarController.deleteMataAnggaran(obj)}"        
+                            /> 
                       
                         </b:dataTableColumn>
                         
                     </b:dataTable>
+                    
                 </h:form>
 
 

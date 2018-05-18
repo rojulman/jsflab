@@ -21,7 +21,8 @@ and open the template in the editor.
             <ui:define name="isi">
                 Form Entry Mata Anggarann
                 <b:form horizontal="true">
-                    <b:inputText placeholder="Mata Anggaran" 
+                    <b:inputText placeholder="Mata Anggaran"
+                                 value="#{mataAnggarController.mataAnggaran.nama}"
                                  required="true" label="Nama" 
                                  colMd="10" labelColMd="2">
                         <f:facet name="prepend">
@@ -30,6 +31,7 @@ and open the template in the editor.
                     </b:inputText>
 
                     <b:inputText placeholder="Pagu Maksimal"
+                                 value="#{mataAnggarController.mataAnggaran.maksimal}"
                                  label="Pagu Maksimal" 
                                  colMd="10" labelColMd="2">
                         <f:facet name="prepend">

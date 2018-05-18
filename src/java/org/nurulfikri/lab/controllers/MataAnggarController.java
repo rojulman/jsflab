@@ -13,6 +13,7 @@ import org.nurulfikri.lab.MyBatisConnectionFactory;
 import org.nurulfikri.lab.dao.DAOMataAnggaran;
 import org.nurulfikri.lab.models.KategoriBelanja;
 import org.nurulfikri.lab.models.MataAnggaran;
+import org.nurulfikri.lab.models.Propinsi;
 
 /**
  *
@@ -28,7 +29,7 @@ public class MataAnggarController implements Serializable{
     public MataAnggarController() {
         dAOMataAnggaran = 
            new DAOMataAnggaran(MyBatisConnectionFactory.getSqlSessionFactory());
-        
+        this.mataAnggaran = new MataAnggaran();
     }
 
     public MataAnggaran getMataAnggaran() {
@@ -46,5 +47,33 @@ public class MataAnggarController implements Serializable{
     public List<KategoriBelanja> getAllKategori(){
         return dAOMataAnggaran.getAllKategori();
     }
+    
+    public String saveMataAnggaran(){
+        if (this.mataAnggaran.getId() > 0 ){
+            this.mataAnggaran 
+                = dAOMataAnggaran.update(this.mataAnggaran);
+        }else{
+          this.mataAnggaran = 
+                dAOMataAnggaran.save(this.mataAnggaran);
+        }
+        return "index";
+    }
+    
+    public String editMataAnggaran(MataAnggaran obj){
+        this.mataAnggaran = obj;
+        return "form2";
+    }
+    
+    public String deleteMataAnggaran(MataAnggaran obj){
+        //this.propinsi = obj;
+        dAOMataAnggaran.delete(obj.getId());
+        return "index";
+    }
+    
+    public String addMataAnggaran(){
+        this.mataAnggaran = new MataAnggaran();
+        return "form2";
+    }
+    
     
 }
