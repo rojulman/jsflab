@@ -8,6 +8,10 @@
     <typeAliases>
         <typeAlias alias="Propinsi" 
           type="org.nurulfikri.lab.models.Propinsi"/> 
+         <typeAlias alias="MataAnggaran" 
+          type="org.nurulfikri.lab.models.MataAnggaran"/> 
+          <typeAlias alias="KategoriBelanja" 
+          type="org.nurulfikri.lab.models.KategoriBelanja"/> 
     </typeAliases>
  
     <environments default="development">
@@ -26,6 +30,8 @@
    <mappers>
    <mapper 
      resource="org/nurulfikri/lab/mappers/PropinsiMapper.xml"/>
+   <mapper 
+     resource="org/nurulfikri/lab/mappers/MataAnggaranMapper.xml"/>
    </mappers>
    
 </configuration>
